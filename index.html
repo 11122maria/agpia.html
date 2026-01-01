@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صلاتي خلاصي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #FFD700; --secondary: #FF6F00; --bg: #FFF9F0; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
+        
+        /* التنقل السفلي */
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav-item { cursor: pointer; font-weight: bold; color: #888; text-decoration: none; }
+        .nav-item.active { color: var(--secondary); border-bottom: 2px solid var(--secondary); }
+
+        .page { display: none; padding: 20px; padding-bottom: 100px; animation: fadeIn 0.5s; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { color: var(--secondary); text-align: center; }
+        .tracker-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid var(--primary); margin-bottom: 20px; }
+        .star-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px dashed #eee; }
+        .star-btn { font-size: 35px; background: none; border: none; color: #ddd; cursor: pointer; }
+        .star-btn.active { color: var(--primary); text-shadow: 0 0 10px orange; }
+
+        .prayer-section { background: white; border-radius: 15px; margin-bottom: 10px; border-right: 8px solid var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .prayer-header { padding: 20px; cursor: pointer; font-weight: bold; font-size: 1.1em; }
+        .prayer-content { display: none; padding: 20px; line-height: 2; background: #fffef0; text-align: justify; }
+        
+        .title-red { color: #d32f2f; font-weight: bold; display: block; margin: 15px 0 5px; border-bottom: 1px solid #f8d7da; }
+        .psalm-num { color: #2e7d32; font-weight: bold; }
+        .time-info { font-size: 0.8em; color: #666; display: block; }
+    </style>
+</head>
+<body>
+
+<div id="tracker" class="page active">
+    <h1>🌟 نوتة صلاتي خلاصي 🌟</h1>
+    <div class="tracker-card">
+        <div class="star-row">
+            <div><strong>صلاة باكر</strong><span class="time-info">الموعد: 6:00 صباحاً</span></div>
+            <button class="star-btn" onclick="this.classList.toggle('active')">★</button>
+        </div>
+        <div class="star-row">
+            <div><strong>صلاة الغروب</strong><span class="time-info">الموعد: 5:00 مساءً</span></div>
+            <button class="star-btn" onclick="this.classList.toggle('active')">★</button>
+        </div>
+        <div class="star-row">
+            <div><strong>صلاة النوم</strong><span class="time-info">الموعد: 8:00 مساءً</span></div>
+            <button class="star-btn" onclick="this.classList.toggle('active')">★</button>
+        </div>
+    </div>
+    <div class="tracker-card" style="border-color: #4caf50;">
+        <h3>أسس تقييم بطلي الصغير:</h3>
+        <ul>
+            <li>هل صليت بخشوع؟</li>
+            <li>هل شكرت ربنا على أكلك وشربك؟</li>
+            <li>هل طلبت من ربنا يحرسك؟</li>
+        </ul>
+    </div>
+</div>
+
+<div id="agpia" class="page">
+    <h1>📖 الأجبية كاملة</h1>
+
+    <div class="prayer-section">
+        <div class="prayer-header" onclick="toggle(this)">📜 مقدمة كل ساعة</div>
+        <div class="prayer-content">
+            <span class="title-red">الصلاة الربانية</span>
+            أبانا الذي في السماوات، ليتقدس اسمك، ليأت ملكوتك، لتكن مشيئتك، كما في السماء كذلك على الأرض...
+            <span class="title-red">صلاة الشكر</span>
+            فلنشكر صانع الخيرات الرحوم الله أبا ربنا وإلهنا ومخلصنا يسوع المسيح، لأنه سترنا وأعاننا وحفظنا، وقبلنا إليه وأشفق علينا وعضدنا، وأتى بنا إلى هذه الساعة...
+            <span class="title-red">المزمور الخمسون</span>
+            ارحمني يا الله كعظيم رحمتك، ومثل كثرة رأفتك تمحو إثمي. اغسلني كثيراً من إثمي ومن خطيتي طهرني...
+        </div>
+    </div>
+
+    <div class="prayer-section">
+        <div class="prayer-header" onclick="toggle(this)">☀️ صلاة باكر (6:00 ص)</div>
+        <div class="prayer-content">
+            <span class="title-red">مزامير باكر</span>
+            <span class="psalm-num">مزمور 1:</span> طوبى للرجل الذي لم يسلك في مشورة المنافقين، وفي طريق الخطاة لم يقف، وفي مجلس المستهزئين لم يجلس...<br>
+            <span class="psalm-num">مزمور 2:</span> لماذا ارتجت الأمم وتفكرت الشعوب في الباطل؟ قامت ملوك الأرض وتآمر الرؤساء معاً على الرب وعلى مسيحه...<br>
+            <span class="psalm-num">مزمور 3:</span> يا رب لماذا كثر الذين يحزنونني؟ كثيرون قاموا عليّ. كثيرون يقولون لنفسي ليس له خلاص بإلهه...
+            <span class="title-red">إنجيل باكر (يوحنا 1: 1-17)</span>
+            في البدء كان الكلمة، والكلمة كان عند الله، وكان الكلمة الله... والكلمة صار جسداً وحلّ فينا، ورأينا مجده مثل مجد ابن وحيد لأبيه مملوءاً نعمة وحقاً...
+            <span class="title-red">القطع</span>
+            أيها النور الحقيقي الذي يضيء لكل إنسان آتٍ إلى العالم، أتيت إلى العالم بمحبتك للبشر، وكل الخليقة تهللت بمجيئك...
+            <span class="title-red">التحليل</span>
+            أيها الرب إله القوات الكائن قبل الدهور والدائم إلى الأبد... نشكرك لأنك أجزتنا هذا الليل بسلام وأتيت بنا إلى مبدأ النهار.
+        </div>
+    </div>
+
+    <div class="prayer-section">
+        <div class="prayer-header" onclick="toggle(this)">🌇 صلاة الغروب (5:00 م)</div>
+        <div class="prayer-content">
+            <span class="title-red">مزامير الغروب</span>
+            <span class="psalm-num">مزمور 116:</span> سبحوا الرب يا جميع الأمم ولتباركه كافة الشعوب، لأن رحمته قد ثبتت علينا وحق الرب يدوم إلى الأبد...<br>
+            <span class="psalm-num">مزمور 117:</span> احمدوا الرب لأنه صالح، لأن إلى الأبد رحمته. ليقل بيت إسرائيل إنه صالح وأن إلى الأبد رحمته...
+            <span class="title-red">الإنجيل (لوقا 4: 38-41)</span>
+            ولما قامت من المجمع دخلت بيت سمعان، وكانت حماة سمعان بها حمى شديدة، فسألوه من أجلها... وعند غروب الشمس كان كل الذين عندهم مرضى بأنواع أمراض كثيرة يقدمونهم إليه.
+            <span class="title-red">القطع</span>
+            إذا ما وقفنا في هيكلك المقدس نحسب كأننا قيام في السماء. يا والدة الإله، أنت هي باب السماء، افتحي لنا باب الرحمة...
+        </div>
+    </div>
+
+    <div class="prayer-section">
+        <div class="prayer-header" onclick="toggle(this)">🌙 صلاة النوم (8:00 م)</div>
+        <div class="prayer-content">
+            <span class="title-red">مزامير النوم</span>
+            <span class="psalm-num">مزمور 129:</span> من الأعماق صرخت إليك يا رب، يا رب استمع صوتي. لتكن أذناك مصغيتين إلى صوت تضرعي...<br>
+            <span class="psalm-num">مزمور 130:</span> يا رب لم يرتفع قلبي ولم تستعلِ عيناي، ولم أسلك في العظائم ولا في العجائب التي هي أعلى مني...
+            <span class="title-red">الإنجيل (لوقا 2: 29-32)</span>
+            والآن يا سيدي تطلق عبدك بسلام حسب قولك، لأن عيني قد أبصرتا خلاصك الذي أعددته قدام جميع الشعوب، نوراً استعلن للأمم ومجداً لشعبك إسرائيل.
+            <span class="title-red">القطع</span>
+            هوذا أنا عتيد أن أقف أمام الديان العادل مرعوباً ومرتعباً من كثرة ذنوبي، لأن العمر المنقضي في الملاهي يستوجب الدينونة...
+            <span class="title-red">التحليل</span>
+            أيها الرب يسوع المسيح ابن الله الحي... أنعم علينا بنوم هادئ، طاهراً من كل قلق، وأرسل لنا ملاك السلامة ليحرسنا من كل شر.
+        </div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <div class="nav-item active" onclick="switchPage('tracker', this)">🌟 النوتة</div>
+    <div class="nav-item" onclick="switchPage('agpia', this)">📖 الأجبية</div>
+</div>
+
+<script>
+    function toggle(header) {
+        const content = header.nextElementSibling;
+        const isOpen = content.style.display === 'block';
+        document.querySelectorAll('.prayer-content').forEach(c => c.style.display = 'none');
+        content.style.display = isOpen ? 'none' : 'block';
+    }
+    function switchPage(pageId, el) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
